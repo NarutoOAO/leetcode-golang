@@ -1,13 +1,11 @@
 package _160
 
-import "leetcode-golang/leetcode"
-
 type ListNode struct {
 	Val  int
 	Next *ListNode
 }
 
-func getIntersectionNode(headA, headB *leetcode.ListNode) *leetcode.ListNode {
+func getIntersectionNode(headA, headB *ListNode) *ListNode {
 	a := headA
 	b := headB
 	for a != b {
