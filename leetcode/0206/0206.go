@@ -1,16 +1,12 @@
 package _206
 
-import "leetcode-golang/leetcode"
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
 
-/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
-func reverseList(head *leetcode.ListNode) *leetcode.ListNode {
-	var pre *leetcode.ListNode
+func reverseList(head *ListNode) *ListNode {
+	var pre *ListNode
 	for head != nil {
 		next := head.Next
 		head.Next = pre

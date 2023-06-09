@@ -1,8 +1,11 @@
 package _025
 
-import "leetcode-golang/leetcode"
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
 
-func reverseKGroup(head *leetcode.ListNode, k int) *leetcode.ListNode {
+func reverseKGroup(head *ListNode, k int) *ListNode {
 	node := head
 	for i := 0; i < k; i++ {
 		if node == nil {
@@ -15,7 +18,7 @@ func reverseKGroup(head *leetcode.ListNode, k int) *leetcode.ListNode {
 	return newHead
 }
 
-func reverse(head, last *leetcode.ListNode) *leetcode.ListNode {
+func reverse(head, last *ListNode) *ListNode {
 	pre := last
 	for head != last {
 		tmp := head.Next

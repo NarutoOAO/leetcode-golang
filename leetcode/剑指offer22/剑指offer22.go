@@ -1,15 +1,11 @@
 package 剑指offer22
 
-import "leetcode-golang/leetcode"
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
 
-/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
-func getKthFromEnd(head *leetcode.ListNode, k int) *leetcode.ListNode {
+func getKthFromEnd(head *ListNode, k int) *ListNode {
 	fast := head
 	slow := head
 	for i := 0; i < k; i++ {

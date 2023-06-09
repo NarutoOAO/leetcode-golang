@@ -1,22 +1,18 @@
 package _103
 
-import "leetcode-golang/leetcode"
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
 
-/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
-func zigzagLevelOrder(root *leetcode.TreeNode) [][]int {
+func zigzagLevelOrder(root *TreeNode) [][]int {
 	if root == nil {
 		return [][]int{}
 	}
 	res := [][]int{}
 	tmp := []int{}
-	q := []*leetcode.TreeNode{}
+	q := []*TreeNode{}
 	q = append(q, root)
 	reverse := 0
 	curnum := 1

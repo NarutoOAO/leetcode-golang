@@ -2,13 +2,11 @@ package _160
 
 import "leetcode-golang/leetcode"
 
-/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
 func getIntersectionNode(headA, headB *leetcode.ListNode) *leetcode.ListNode {
 	a := headA
 	b := headB

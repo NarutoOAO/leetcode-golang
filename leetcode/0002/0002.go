@@ -1,16 +1,12 @@
 package _002
 
-import "leetcode-golang/leetcode"
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
 
-/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
-func addTwoNumbers(l1 *leetcode.ListNode, l2 *leetcode.ListNode) *leetcode.ListNode {
-	l := &leetcode.ListNode{Val: 0}
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	l := &ListNode{Val: 0}
 	cur := l
 	carry := 0
 	for l1 != nil || l2 != nil {
@@ -24,11 +20,11 @@ func addTwoNumbers(l1 *leetcode.ListNode, l2 *leetcode.ListNode) *leetcode.ListN
 			l2 = l2.Next
 		}
 		carry = tmp / 10
-		cur.Next = &leetcode.ListNode{Val: tmp % 10}
+		cur.Next = &ListNode{Val: tmp % 10}
 		cur = cur.Next
 	}
 	if carry == 1 {
-		cur.Next = &leetcode.ListNode{Val: 1}
+		cur.Next = &ListNode{Val: 1}
 	}
 	return l.Next
 }
