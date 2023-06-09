@@ -1,0 +1,1 @@
+回朔法 使用一个*used[]bool 遍历数组的时候将(*used)[i] = true 然后继续遍历,遍历完 (*used)[i] = false

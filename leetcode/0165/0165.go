@@ -5,7 +5,6 @@ import (
 	"strings"
 )
 
-// 使用strings.Split方法，得到一个字符串数组，再使用strconv包中的Atoi方法可以得到每位上的数字，逐一比较，如果有差距则返回-1或1
 func compareVersion(version1 string, version2 string) int {
 	n1 := strings.Split(version1, ".")
 	n2 := strings.Split(version2, ".")

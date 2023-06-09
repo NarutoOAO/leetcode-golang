@@ -2,6 +2,21 @@ package leetcode
 
 import "math/rand"
 
+// 快选
+func selectKthLargest(nums []int, l, r, k int) int {
+	if l >= r {
+		return nums[l]
+	}
+	q := partion1(nums, l, r)
+	if k == q {
+		return nums[q]
+	} else if k > q {
+		return selectKthLargest(nums, q+1, r, k)
+	} else {
+		return selectKthLargest(nums, 0, q-1, k)
+	}
+}
+
 // 快排
 func quicksort(nums []int, l, r int) {
 	if l >= r {
