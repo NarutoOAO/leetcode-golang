@@ -1,0 +1,1 @@
+使用左右指针,注意减枝,减枝的地方有nums[index]等于nums[index-1], nums[i]等于nums[i-1], nums[j]等于nums[j+1]的情况,
