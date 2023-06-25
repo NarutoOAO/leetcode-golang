@@ -2,33 +2,37 @@ package main
 
 import (
 	"fmt"
-	"math/bits"
+	"math/rand"
 )
 
 func main() {
-	fmt.Println(bits.OnesCount(9))
+	a := []int{3, -1}
+	quicksort(a, 0, len(a)-1)
+	fmt.Println(a)
 }
 
-func numberOfGoodSubarraySplits(nums []int) int {
-	i, j := 0, 0
-	dp := make([]int, len(nums)+1)
-	for i < len(nums) {
-		if nums[i] == 1 {
-			j = i
-			dp[i] = 1
-			break
-		}
-		i++
+func quicksort(nums []int, l, r int) {
+	if l >= r {
+		return
 	}
-	j++
-	for j < len(nums) {
-		if nums[j] == 1 {
-			dp[j] = dp[i] + j - i - 1
-			i = j
-		} else {
-			dp[j] = dp[i]
+	p := partition(nums, l, r)
+	quicksort(nums, p+1, r)
+	quicksort(nums, 0, p-1)
+}
+
+func partition(nums []int, l, r int) int {
+	k := l + rand.Intn(r-l+1)
+	nums[l], nums[k] = nums[k], nums[l]
+	i, j := l, r
+	for i < j {
+		for i < j && nums[j] >= nums[l] {
+			j--
 		}
-		j++
+		for i < j && nums[i] <= nums[l] {
+			i++
+		}
+		nums[i], nums[j] = nums[j], nums[i]
 	}
-	return dp[len(nums)]
+	nums[i], nums[l] = nums[l], nums[i]
+	return i
 }

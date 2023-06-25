@@ -7,7 +7,7 @@ func selectKthLargest(nums []int, l, r, k int) int {
 	if l >= r {
 		return nums[l]
 	}
-	q := partion1(nums, l, r)
+	q := partition(nums, l, r)
 	if k == q {
 		return nums[q]
 	} else if k > q {
@@ -22,40 +22,24 @@ func quicksort(nums []int, l, r int) {
 	if l >= r {
 		return
 	}
-	p := partion1(nums, l, r)
-	partion1(nums, p+1, r)
-	partion1(nums, 0, p-1)
+	p := partition(nums, l, r)
+	quicksort(nums, p+1, r)
+	quicksort(nums, 0, p-1)
 }
 
-// [0:i] 的数一定小于nums[r]
-func partion1(nums []int, l, r int) int {
+func partition(nums []int, l, r int) int {
 	k := l + rand.Intn(r-l+1)
-	nums[k], nums[r] = nums[r], nums[k]
-	i := l - 1
-	for j := l; j < r; j++ {
-		if nums[j] <= nums[r] {
-			i++
-			nums[i], nums[j] = nums[j], nums[i]
-		}
-	}
-	nums[i+1], nums[r] = nums[r], nums[i+1]
-	return i + 1
-}
-
-func partion2(arr []int, l, r int) int {
-	k := rand.Intn(r-l+1) + l
-	arr[l], arr[k] = arr[k], arr[l]
-	i := l
-	j := r
+	nums[l], nums[k] = nums[k], nums[l]
+	i, j := l, r
 	for i < j {
-		for i < j && arr[j] >= arr[l] {
+		for i < j && nums[j] >= nums[l] {
 			j--
 		}
-		for i < j && arr[i] <= arr[l] {
+		for i < j && nums[i] <= nums[l] {
 			i++
 		}
-		arr[i], arr[j] = arr[j], arr[i]
+		nums[i], nums[j] = nums[j], nums[i]
 	}
-	arr[l], arr[i] = arr[i], arr[l]
+	nums[i], nums[l] = nums[l], nums[i]
 	return i
 }
