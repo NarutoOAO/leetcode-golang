@@ -1,5 +1,6 @@
 package _59
 
+// 使用两个队列，每次加入新元素的时候将队列前面比新元素小的元素弹出
 type MaxQueue struct {
 	q1 []int
 	q2 []int
