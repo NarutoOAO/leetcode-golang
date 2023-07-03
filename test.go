@@ -2,37 +2,26 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
 )
 
 func main() {
-	a := []int{3, -1}
-	quicksort(a, 0, len(a)-1)
-	fmt.Println(a)
-}
+	fmt.Println(sumImbalanceNumbers([]int{3, 1, 4}))
 
-func quicksort(nums []int, l, r int) {
-	if l >= r {
-		return
-	}
-	p := partition(nums, l, r)
-	quicksort(nums, p+1, r)
-	quicksort(nums, 0, p-1)
 }
-
-func partition(nums []int, l, r int) int {
-	k := l + rand.Intn(r-l+1)
-	nums[l], nums[k] = nums[k], nums[l]
-	i, j := l, r
-	for i < j {
-		for i < j && nums[j] >= nums[l] {
-			j--
+func sumImbalanceNumbers(nums []int) int {
+	res, cnt, n := 0, 0, len(nums)
+	for i, v1 := range nums {
+		vis := make(map[int]int)
+		vis[v1] = 1
+		cnt = 0
+		for j := i + 1; j < n; j++ {
+			v2 := nums[j]
+			if vis[v2] == 0 {
+				cnt += 1 - vis[v2-1] - vis[v2+1]
+				vis[v2] = 1
+			}
+			res += cnt
 		}
-		for i < j && nums[i] <= nums[l] {
-			i++
-		}
-		nums[i], nums[j] = nums[j], nums[i]
 	}
-	nums[i], nums[l] = nums[l], nums[i]
-	return i
+	return res
 }
