@@ -5,23 +5,16 @@ import (
 )
 
 func main() {
-	fmt.Println(sumImbalanceNumbers([]int{3, 1, 4}))
+	fmt.Println(findRepeatNumber([]int{3, 1, 3}))
 
 }
-func sumImbalanceNumbers(nums []int) int {
-	res, cnt, n := 0, 0, len(nums)
-	for i, v1 := range nums {
-		vis := make(map[int]int)
-		vis[v1] = 1
-		cnt = 0
-		for j := i + 1; j < n; j++ {
-			v2 := nums[j]
-			if vis[v2] == 0 {
-				cnt += 1 - vis[v2-1] - vis[v2+1]
-				vis[v2] = 1
-			}
-			res += cnt
+func findRepeatNumber(nums []int) int {
+	m := make(map[int]int)
+	for _, num := range nums {
+		if m[num] > 0 {
+			return num
 		}
+		m[num] = 1
 	}
-	return res
+	return 0
 }
