@@ -1,20 +1,49 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	fmt.Println(findRepeatNumber([]int{3, 1, 3}))
-
-}
-func findRepeatNumber(nums []int) int {
-	m := make(map[int]int)
-	for _, num := range nums {
-		if m[num] > 0 {
-			return num
-		}
-		m[num] = 1
+	root := &TreeNode{
+		Val:   1,
+		Left:  nil,
+		Right: nil,
 	}
-	return 0
+	fmt.Println(pathSum(root, 1))
+}
+
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
+var res [][]int
+
+func pathSum(root *TreeNode, target int) [][]int {
+	if root == nil {
+		return [][]int{}
+	}
+	recur(root, target, []int{})
+	return res
+}
+
+func recur(root *TreeNode, target int, tmp []int) {
+	target -= root.Val
+	if target < 0 {
+		return
+	}
+	tmp = append(tmp, root.Val)
+	if root.Left == nil && root.Right == nil && target == 0 {
+		tmp1 := make([]int, len(tmp))
+		copy(tmp1, tmp)
+		res = append(res, tmp1)
+		return
+	}
+	if root.Left != nil {
+		recur(root.Left, target, tmp)
+	}
+	if root.Right != nil {
+		recur(root.Right, target, tmp)
+	}
+	//tmp = tmp[:len(tmp)-1]
 }
