@@ -45,5 +45,6 @@ func recur(root *TreeNode, target int, tmp []int) {
 	if root.Right != nil {
 		recur(root.Right, target, tmp)
 	}
+
 	//tmp = tmp[:len(tmp)-1]
 }
