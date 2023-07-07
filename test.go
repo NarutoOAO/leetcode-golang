@@ -25,6 +25,7 @@ func pathSum(root *TreeNode, target int) [][]int {
 	}
 	recur(root, target, []int{})
 	return res
+
 }
 
 func recur(root *TreeNode, target int, tmp []int) {
