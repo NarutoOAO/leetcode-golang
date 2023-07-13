@@ -15,6 +15,7 @@ func maxNonDecreasingLength(nums1 []int, nums2 []int) int {
 		} else if max(nums1[i], nums2[i]) >= preMax {
 			preMax = max(nums1[i], nums2[i])
 			sum++
+
 		} else {
 			sum = 1
 			preMax = min(nums1[i], nums2[i])
